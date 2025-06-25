@@ -1,0 +1,11 @@
+<h1>Employees</h1>
+
+<% @employees.each do |employee| %>
+  <div class="employee">
+    <p><strong>Name:</strong> <%= employee.name %></p>
+    <p><strong>Role:</strong> <%= employee.role %></p>
+    <%= link_to "Show", employee_path(employee) %>
+  </div>
+<% end %>
+
+<%= link_to "New Employee", new_employee_path, class: "button" %>
