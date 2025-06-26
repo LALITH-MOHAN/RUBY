@@ -1,12 +1,8 @@
-# app/controllers/users/sessions_controller.rb
 class Users::SessionsController < Devise::SessionsController
   respond_to :json
-
-  # Skip CSRF for API
-  skip_before_action :verify_authenticity_token
-
-  # Skip JWT auth for logout
-  skip_before_action :authenticate_user_from_jwt_cookie!, only: [:destroy]
+  
+  # Remove the skip_before_action line completely
+  # verify_authenticity_token isn't loaded in API mode so we don't need to skip it
 
   private
 

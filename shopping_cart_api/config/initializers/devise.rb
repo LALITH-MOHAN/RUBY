@@ -20,8 +20,8 @@ Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.reset_password_within = 6.hours
 
-  # Clean CSRF tokens after auth
-  config.clean_up_csrf_token_on_authentication = true
+  # Disable CSRF token cleaning since we're API-only
+  config.clean_up_csrf_token_on_authentication = false
 
   # Rememberable
   config.expire_all_remember_me_on_sign_out = true

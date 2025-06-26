@@ -1,12 +1,9 @@
 class ApplicationController < ActionController::API
-  # Enable cookies and CSRF protection
   include ActionController::Cookies
-  include ActionController::RequestForgeryProtection
+  
+  # Remove the CSRF protection line completely
+  # Don't use skip_before_action as verify_authenticity_token isn't loaded in API mode
 
-  # Handle CSRF for APIs with cookies
-  protect_from_forgery with: :null_session
-
-  # Authenticate user from JWT in cookie for all requests
   before_action :authenticate_user_from_jwt_cookie!
 
   private
@@ -16,16 +13,12 @@ class ApplicationController < ActionController::API
     return unless token
 
     begin
-      # Decode the JWT
       payload = Warden::JWTAuth::TokenDecoder.new.call(token)
-
-      # Find user using subject (sub) from token
       user = User.find_by(id: payload['sub'])
-
-      # Authenticate user without storing session
       sign_in(user, store: false) if user
     rescue JWT::DecodeError, JWT::ExpiredSignature
-      head :unauthorized
+      # Don't return unauthorized here to allow public routes
+      nil
     end
   end
 end

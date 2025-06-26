@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :authorize_admin!, only: [:create, :update, :destroy]
   before_action :set_product, only: [:show, :update, :destroy]
 
+
   PER_PAGE = 9
 
   # GET /products?page=1

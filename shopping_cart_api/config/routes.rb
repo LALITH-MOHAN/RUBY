@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # Devise auth routes
   devise_for :users,
              defaults: { format: :json },
              path: '',
@@ -12,6 +11,9 @@ Rails.application.routes.draw do
                sessions: 'users/sessions',
                registrations: 'users/registrations'
              }
+
+  # Add this for session verification
+  get 'auth/me', to: 'auth#show'
 
   # Category-based product routes
   get 'products/categories', to: 'products#categories'
