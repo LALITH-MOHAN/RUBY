@@ -13,7 +13,6 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.secret_key_base
     jwt.expiration_time = 1.day.to_i
 
-    # These dispatch/revocation hooks won't be used since we're handling cookies manually
     jwt.dispatch_requests = []
     jwt.revocation_requests = []
   end
@@ -22,10 +21,8 @@ Devise.setup do |config|
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]
 
-  # We're using JWT manually → don't store sessions
   config.skip_session_storage = [:http_auth, :params_auth, :token_auth]
 
-  # Password config
   config.stretches = Rails.env.test? ? 1 : 12
   config.password_length = 6..128
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/

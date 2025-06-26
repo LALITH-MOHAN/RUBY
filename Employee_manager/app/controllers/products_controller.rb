@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
+  # Apply authentication only to create, update, and destroy actions
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :set_product, only: [:show, :update, :destroy]
 
   def index
@@ -40,6 +41,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :price, :stock) 
+    params.require(:product).permit(:title, :price, :stock)
   end
 end
