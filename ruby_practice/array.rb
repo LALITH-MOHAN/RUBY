@@ -10,7 +10,6 @@ print nums.join('-')
 print nums.sort()
 
 nums.unshift(10)
-
 print nums.sort()
 
 print (nums.uniq()).sort()
