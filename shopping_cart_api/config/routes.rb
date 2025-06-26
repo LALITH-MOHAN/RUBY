@@ -1,3 +1,4 @@
+# config/routes.rb
 Rails.application.routes.draw do
   devise_for :users,
              defaults: { format: :json },
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              }
 
-  # Add this for session verification
+  # Session verification
   get 'auth/me', to: 'auth#show'
 
   # Category-based product routes
@@ -22,6 +23,14 @@ Rails.application.routes.draw do
   # Main product routes
   resources :products
 
-  # Root route
+  # Cart routes
+  scope :cart do
+    get '/', to: 'cart#index'
+    post '/', to: 'cart#create'
+    put '/:id', to: 'cart#update'
+    delete '/:id', to: 'cart#destroy'
+    delete '/', to: 'cart#destroy'
+  end
+
   root "products#index"
 end
