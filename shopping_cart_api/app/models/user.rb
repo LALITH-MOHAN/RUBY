@@ -8,4 +8,5 @@ class User < ApplicationRecord
   
   has_many :cart_items, dependent: :destroy
   has_many :products_in_cart, through: :cart_items, source: :product
+  has_many :orders, dependent: :destroy
 end

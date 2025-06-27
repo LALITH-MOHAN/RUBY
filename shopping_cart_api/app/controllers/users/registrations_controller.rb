@@ -1,9 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
   
-  # Remove the skip_before_action line completely
-  # verify_authenticity_token isn't loaded in API mode so we don't need to skip it
-
+  
   private
 
   def respond_with(resource, _opts = {})

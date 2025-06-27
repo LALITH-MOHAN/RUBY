@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   devise_for :users,
              defaults: { format: :json },
@@ -31,6 +30,9 @@ Rails.application.routes.draw do
     delete '/:id', to: 'cart#destroy'
     delete '/', to: 'cart#destroy'
   end
+
+  # Order routes
+  resources :orders, only: [:index, :create]
 
   root "products#index"
 end
