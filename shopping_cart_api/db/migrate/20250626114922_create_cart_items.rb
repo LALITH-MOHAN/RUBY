@@ -5,7 +5,7 @@ class CreateCartItems < ActiveRecord::Migration[7.2]
       t.references :product, null: false, foreign_key: true
       t.integer :quantity, null: false, default: 1
       t.timestamps
-      t.datetime :added_at, null: false, default: -> { 'CURRENT_TIMESTAMP' }
+      t.datetime :added_at, null: false
     end
 
     add_index :cart_items, [:user_id, :product_id], unique: true
