@@ -29,6 +29,5 @@ module ShoppingCartApi
       same_site: :lax,
       secure: Rails.env.production?
 
-    # No need to set allow_forgery_protection as it's automatically false for API apps
   end
 end

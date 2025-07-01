@@ -6,7 +6,7 @@ default: &default
   password: root
   host: localhost
   port: 3306
-  socket:  /run/mysqld/mysqld.sock   # Only needed if MySQL socket is in a non-default location
+  socket:  /run/mysqld/mysqld.sock  
 
 development:
   <<: *default
@@ -19,3 +19,5 @@ test:
 production:
   <<: *default
   database: shopping_rails_production
+
+  

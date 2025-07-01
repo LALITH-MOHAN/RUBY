@@ -36,11 +36,9 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
-  # ===> JWT Configuration
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise_jwt_secret_key || 'your_jwt_secret_key'
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key
     
-    # Match these to your login/logout endpoints
     jwt.dispatch_requests = [
       ['POST', %r{^/login$}]
     ]
